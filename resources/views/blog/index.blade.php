@@ -16,6 +16,11 @@
             </a>
         @endforeach
       </div><br>
+      <div class="p-2 bg-gray-50">
+        <div class="flex justify-end">
+            {{ $posts->links() }}            
+        </div>
+    </div>
     </div>
   </div>
 </div><br>

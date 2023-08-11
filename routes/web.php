@@ -31,7 +31,10 @@ Route::group(['middleware' => ['auth']], function() {
         return view('dashboard');
     })->name('dashboard');
     
-    Route::resource('users', UserController::class);
+    Route::group(['middleware' => ['admin']], function() { 
+        Route::resource('users', UserController::class);
+    });
+    
     Route::resource('posts', PostController::class);
 });
 
