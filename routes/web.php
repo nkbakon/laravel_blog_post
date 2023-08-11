@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\PostController;
+use \App\Http\Controllers\PasswordController;
+use \App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +22,9 @@ Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::resource('blog', BlogController::class);
+Route::get('blog/{post}/', [SiteController::class, 'show'])->name('blog.show');
+
 Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/dashboard', function () {
@@ -27,4 +33,11 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::resource('users', UserController::class);
     Route::resource('posts', PostController::class);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', function () {
+        return view('profile.edit');
+    })->name('profile.edit');
+    Route::put('/profile', [PasswordController::class, 'update'])->name('password.update');
 });
