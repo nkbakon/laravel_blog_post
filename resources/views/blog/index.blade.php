@@ -4,8 +4,8 @@
 <div class="py-12">
   <div class="sm:px-6 lg:px-8">
     <div class="bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg sm:px-24 lg:px-26">
-      <div class="flex space-x-40">
         @foreach($posts as $post)
+        <div class="flex space-x-40">        
             <a href="{{ route('blog.show', $post) }}">
                 <div class="justify-center inline-flex bg-gray-300 rounded overflow-hidden shadow-lg" style="width:320px; height:128px;">
                     <div class="px-6 py-4 text-center">
@@ -13,14 +13,14 @@
                         <p class="mt-1 text-lg font-medium text-gray-900">{{ $post->title }}</p>
                     </div>
                 </div>
-            </a>
+            </a>        
+        </div><br>
         @endforeach
-      </div><br>
-      <div class="p-2 bg-gray-50">
-        <div class="flex justify-end">
-            {{ $posts->links() }}            
+        <div class="p-2 bg-gray-50">
+            <div class="flex justify-end">
+                {{ $posts->links() }}            
+            </div>
         </div>
-    </div>
     </div>
   </div>
 </div><br>
